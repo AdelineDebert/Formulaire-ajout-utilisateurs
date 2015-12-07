@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+
+  <form>
+    <div>
+    <label for="chpNom" >Nom</label>
+      <input id="chpNom" />
+    </div>
+    <div>
+    <label for="chpPrenom" >Prenom</label>
+      <input id="chpPrenom" />
+    </div>
+    <button type="button" onclick="ajouter()">Ajouter</button>
+
+    <ul id="maListe">
+    </ul>
+    <script>
+
+      var nom = document.getElementById("chpNom");
+      var prenom = document.getElementById("chpPrenom");
+      var liste = document.getElementById("maListe");
+      var compteur = 0;
+
+      function supprimer(i) {
+        var liASupprimer = document.getElementById("nouveau_li"+i);
+        console.log(liASupprimer);
+        var liQuiDegage = liste.removeChild(liASupprimer);
+        console.log(liQuiDegage);
+      }
+
+      function ajouter(){
+        var li = document.createElement("li");
+        var nouveauNom = nom.value;
+        var nouveauPrenom = prenom.value;
+        liste.appendChild(li);
+        li.appendChild(document.createTextNode(nouveauNom + " " + nouveauPrenom + " "));
+        li.id = "nouveau_li"+ compteur;
+        var bouton =  document.createElement("button");
+        bouton.setAttribute("type", "button");
+        bouton.setAttribute("onClick", "supprimer(" + compteur + ")");
+        bouton.id = "delete";
+        li.appendChild(bouton);
+        bouton.textContent = "x";
+        compteur ++;
+        nom.value="";
+        prenom.value="";
+      }
+
+      </script>
+
+</body>
+
+</html>
